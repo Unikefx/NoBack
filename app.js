@@ -146,15 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // File Upload Drag & Drop Handlers
   function setupFileUpload(dropZone, fileInput, textarea, labelEl, onDone) {
-    dropZone.addEventListener('click', (e) => {
-      if (e.target !== fileInput) {
-        fileInput.click();
-      }
-    });
-
-    fileInput.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
+    dropZone.addEventListener('click', () => fileInput.click());
 
     dropZone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -169,30 +161,24 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       dropZone.classList.remove('dragover');
       if (e.dataTransfer.files.length) {
-        handleFile(e.dataTransfer.files[0], textarea, labelEl, onDone, fileInput);
+        handleFile(e.dataTransfer.files[0], textarea, labelEl, onDone);
       }
     });
 
     fileInput.addEventListener('change', (e) => {
       if (e.target.files.length) {
-        handleFile(e.target.files[0], textarea, labelEl, onDone, fileInput);
+        handleFile(e.target.files[0], textarea, labelEl, onDone);
       }
     });
   }
 
-  function handleFile(file, textarea, labelEl, onDone, fileInput) {
+  function handleFile(file, textarea, labelEl, onDone) {
     labelEl.textContent = file.name;
     const reader = new FileReader();
     reader.onload = (e) => {
       textarea.value = e.target.result;
-      if (fileInput) fileInput.value = '';
       if (onDone) onDone();
       showToast(`Loaded file: ${file.name}`);
-
-      // Auto-trigger comparison if both inputs now have content
-      if (followersTextarea.value.trim() && followingTextarea.value.trim()) {
-        runComparison();
-      }
     };
     reader.readAsText(file);
   }
@@ -201,16 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function parseHandles(rawContent) {
     if (!rawContent || !rawContent.trim()) return [];
 
-    // Strip Byte Order Mark (\uFEFF) and trim
-    let content = rawContent.replace(/^\uFEFF/, '').trim();
+    const content = rawContent.trim();
     const handlesSet = new Set();
     const ignorePaths = new Set([
       '_u', 'explore', 'p', 'stories', 'reels', 'direct', 'accounts',
       'legal', 'about', 'developer', 'directory', 'privacy', 'blog', 'terms',
       'emails', 'graphql', 'create', 'login', 'signup', 'feed', 'html', 'meta',
-      'following', 'followers', 'relationships_following', 'relationships_followers',
-      'timestamp', 'value', 'href', 'title', 'string_list_data', 'media_list_data',
-      'user', 'users', 'account', 'accounts', 'data', 'results', 'items', 'list'
+      'following', 'followers', 'relationships_following', 'relationships_followers'
     ]);
 
     const addIfValid = (candidate) => {
@@ -227,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (handle.startsWith('_u/')) {
         handle = handle.substring(3);
       }
-      // Clean trailing slashes, query params, or anchors
+      // Clean trailing slashes or query parameters
       handle = handle.split('/')[0].split('?')[0].split('#')[0].trim();
 
       if (
@@ -239,17 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // 1. Try JSON parsing FIRST
-    try {
-      if (content.startsWith('{') || content.startsWith('[') || content.includes('string_list_data') || content.includes('relationships_')) {
+    // 1. Try JSON parsing FIRST if content starts with { or [
+    if (content.startsWith('{') || content.startsWith('[')) {
+      try {
         const json = JSON.parse(content);
         extractFromJson(json, addIfValid);
         if (handlesSet.size > 0) {
           return Array.from(handlesSet);
         }
+      } catch (e) {
+        console.warn("JSON parse error:", e);
       }
-    } catch (e) {
-      console.warn("JSON parse attempt:", e);
     }
 
     // 2. Try DOM Parsing if content contains HTML tags
@@ -270,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        const textElements = doc.querySelectorAll('h2, h3, h4, p, span, td, th, div, li');
+        const textElements = doc.querySelectorAll('h2, h3, h4, span, td, th, div');
         textElements.forEach(el => {
           if (el.children.length === 0 && el.textContent) {
             addIfValid(el.textContent);
@@ -307,16 +290,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Array.isArray(data)) {
       data.forEach(item => extractFromJson(item, addIfValid));
     } else if (typeof data === 'object') {
+      // Instagram Meta JSON exports use string_list_data array containing { href, value, timestamp }
       if (data.string_list_data && Array.isArray(data.string_list_data)) {
         data.string_list_data.forEach(sub => {
           if (sub.value) addIfValid(sub.value);
-          if (sub.href) addIfValid(sub.href);
+          else if (sub.href) addIfValid(sub.href);
         });
       }
-      if (data.title && typeof data.title === 'string') addIfValid(data.title);
+      // Also check direct value or username fields in JSON
       if (data.value && typeof data.value === 'string') addIfValid(data.value);
       if (data.username && typeof data.username === 'string') addIfValid(data.username);
-      if (data.name && typeof data.name === 'string') addIfValid(data.name);
 
       for (const key in data) {
         if (typeof data[key] === 'object') {
@@ -761,7 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Render Line-by-Line Copy Box
-  fu`nction renderCopyBox() {
+  function renderCopyBox() {
     let list = [];
     let titleText = '';
 
@@ -1017,5 +1000,5 @@ function resetAll() {
 }
 
 // Restore previous session on page load if available
-restoreRawInputs()
+restoreRawInputs();
 });
