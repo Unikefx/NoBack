@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Follower & Following Comparator | Find Non-Followers</title>
+  <meta name="description" content="Compare Instagram followers and following HTML files or lists to find who does not follow you back with a line-by-line copy box.">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand-badge">
+        <i class="fa-brands fa-instagram"></i> Instagram Analyzer & Copy Utility
+      </div>
+      <h1>Follower vs Following Comparator</h1>
+      <p>Upload or paste your Instagram <code>followers.html</code> and <code>following.html</code> files to instantly find non-followers (the odd ones out) with line-by-line copy boxes.</p>
+      
+      <div class="header-actions">
+        <button id="btnDemo" class="btn btn-secondary">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Load Demo Instagram Data
+        </button>
+        <button id="btnReset" class="btn btn-ghost">
+          <i class="fa-solid fa-rotate-left"></i> Clear All
+        </button>
+      </div>
+    </header>
+
+    <!-- Inputs Section -->
+    <section class="inputs-grid">
+      <!-- Followers Input Card -->
+      <div class="input-card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-users"></i> Followers List
+          </h3>
+          <span class="file-pill" id="followersFileLabel">HTML / Text</span>
+        </div>
+        <div class="drop-zone" id="followersDropZone">
+          <i class="fa-solid fa-file-code"></i>
+          <p>Drag & drop <strong>followers.html</strong> here, or <span>browse file</span></p>
+          <input type="file" id="followersFileInput" accept=".html,.htm,.txt,.json" hidden>
+        </div>
+        <div class="editor-wrapper">
+          <textarea id="followersTextarea" class="input-editor" placeholder="Or paste HTML content / list of followers here..."></textarea>
+        </div>
+        <div class="card-footer">
+          <span>Parsed handles:</span>
+          <span class="count-badge" id="followersCount">0 accounts</span>
+        </div>
+      </div>
+
+      <!-- Following Input Card -->
+      <div class="input-card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-user-plus"></i> Following List
+          </h3>
+          <span class="file-pill" id="followingFileLabel">HTML / Text</span>
+        </div>
+        <div class="drop-zone" id="followingDropZone">
+          <i class="fa-solid fa-file-code"></i>
+          <p>Drag & drop <strong>following.html</strong> here, or <span>browse file</span></p>
+          <input type="file" id="followingFileInput" accept=".html,.htm,.txt,.json" hidden>
+        </div>
+        <div class="editor-wrapper">
+          <textarea id="followingTextarea" class="input-editor" placeholder="Or paste HTML content / list of following here..."></textarea>
+        </div>
+        <div class="card-footer">
+          <span>Parsed handles:</span>
+          <span class="count-badge" id="followingCount">0 accounts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Options & Controls -->
+    <div class="control-bar">
+      <div class="options-group">
+        <label class="checkbox-label" title="Case insensitive matching handles">
+          <input type="checkbox" id="optCaseInsensitive" checked>
+          <span>Ignore Case</span>
+        </label>
+        <label class="checkbox-label" title="Automatically strip @ symbol from usernames">
+          <input type="checkbox" id="optStripAt" checked>
+          <span>Strip '@' Prefix</span>
+        </label>
+        <label class="checkbox-label" title="Remove spaces around handles">
+          <input type="checkbox" id="optTrimSpace" checked>
+          <span>Trim Whitespace</span>
+        </label>
+        <label class="checkbox-label" title="Reverse order (first item becomes last, last becomes first)">
+          <input type="checkbox" id="optReverseOrder" checked>
+          <span>Reverse Order (Bottom to Top)</span>
+        </label>
+      </div>
+
+      <button id="btnCompare" class="btn btn-primary">
+        <i class="fa-solid fa-sliders"></i> Compare & Find Odd Ones Out
+      </button>
+    </div>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="results-section">
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon odd">
+            <i class="fa-solid fa-user-xmark"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Don't Follow Back</h4>
+            <div class="stat-number" id="statNonFollowers">0</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon fans">
+            <div class="stat-icon-inner"><i class="fa-solid fa-heart"></i></div>
+          </div>
+          <div class="stat-info">
+            <h4>Your Fans (Don't Follow)</h4>
+            <div class="stat-number" id="statFans">0</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon mutual">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Mutual Followers</h4>
+            <div class="stat-number" id="statMutuals">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs & Search Navigation -->
+      <div class="tab-navigation">
+        <div class="tabs-group" id="tabsGroup">
+          <button class="tab-btn active" data-tab="non-followers">
+            <i class="fa-solid fa-user-xmark"></i> Don't Follow Back <span class="tab-count" id="countTabNonFollowers">0</span>
+          </button>
+          <button class="tab-btn" data-tab="fans">
+            <i class="fa-solid fa-heart"></i> Fans <span class="tab-count" id="countTabFans">0</span>
+          </button>
+          <button class="tab-btn" data-tab="mutuals">
+            <i class="fa-solid fa-user-check"></i> Mutuals <span class="tab-count" id="countTabMutuals">0</span>
+          </button>
+          <button class="tab-btn" data-tab="all">
+            <i class="fa-solid fa-list-ul"></i> All Unique <span class="tab-count" id="countTabAll">0</span>
+          </button>
+        </div>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search usernames...">
+        </div>
+      </div>
+
+      <!-- Dedicated Line-by-Line Copy Box -->
+      <div class="copy-box-container">
+        <div class="copy-box-header">
+          <div class="copy-box-title">
+            <i class="fa-solid fa-clipboard-list" style="color: var(--accent-orange);"></i>
+            <span id="copyBoxTitle">Don't Follow Back (Line-by-Line Copy Box)</span>
+          </div>
+          <div class="copy-box-actions">
+            <button id="btnToggleReverse" class="btn btn-secondary btn-sm" title="Reverse list order (first to last / last to first)">
+              <i class="fa-solid fa-arrow-down-up-rotate"></i> Flip Order
+            </button>
+            <button id="btnCopyAll" class="btn btn-secondary btn-sm">
+              <i class="fa-regular fa-copy"></i> Copy All (Line by Line)
+            </button>
+            <button id="btnDownload" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-file-arrow-down"></i> Export .TXT
+            </button>
+          </div>
+        </div>
+
+        <!-- Unfollow Tracker Toolbar -->
+        <div class="tracker-toolbar" id="trackerToolbar">
+          <div class="tracker-info">
+            <button id="btnOpenNext" class="btn btn-primary btn-sm" title="Open the next unfollowed profile in a new tab">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Next Profile
+            </button>
+
+            <!-- Auto Next Controls -->
+            <div class="auto-next-controls">
+              <button id="btnAutoNext" class="btn btn-auto-next btn-sm" title="Automatically open next profile on interval">
+                <i class="fa-solid fa-play"></i> Start Auto
+              </button>
+              <div class="auto-next-settings">
+                <label for="autoNextDelay" title="Interval in seconds (minimum 3s)">Every:</label>
+                <input type="number" id="autoNextDelay" min="3" value="5" class="number-input-sm auto-delay-input" title="Set interval between opening profiles (minimum 3 seconds)">
+                <span class="sec-label">s</span>
+                <label class="checkbox-label-sm" title="Add random variable delay (+0 to +3s variance) for natural pacing">
+                  <input type="checkbox" id="chkVariableDelay" checked>
+                  <span>Variable</span>
+                </label>
+              </div>
+              <span id="autoNextCountdown" class="auto-countdown-badge" style="display: none;">
+                <i class="fa-solid fa-spinner fa-spin"></i> Next: <strong id="countdownSecs">5</strong>s
+              </span>
+            </div>
+
+            <div class="tracker-progress-wrapper">
+              <div class="tracker-stats-text">
+                <span id="trackerProgressText">Progress: 0 / 0 Done (0%)</span>
+                <div class="jump-control">
+                  <label for="inputJumpTo">Done Up To #:</label>
+                  <input type="number" id="inputJumpTo" min="0" value="0" class="number-input-sm" title="Enter item number to mark all accounts up to this number as Done">
+                </div>
+                <span class="safety-badge" id="safetyBadge" title="Recommended safe limit: ~15 unfollows per hour">
+                  <i class="fa-solid fa-shield-halved"></i> Safe Rate: <strong id="hourlyCount">0</strong> / 15 this hour
+                </span>
+              </div>
+              <div class="slider-container">
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+                <input type="range" id="progressSlider" min="0" max="100" value="0" class="progress-slider" title="Drag to adjust unfollowed progress">
+              </div>
+            </div>
+          </div>
+          <button id="btnResetTracker" class="btn btn-ghost btn-sm" title="Reset tracking progress for this list">
+            <i class="fa-solid fa-rotate-left"></i> Clear Progress
+          </button>
+        </div>
+
+        <!-- Copy Box Body (Line by line items) -->
+        <div class="copy-box-body" id="copyBoxBody">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js?v=5"></script>
+</body>
+</html>
