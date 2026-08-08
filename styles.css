@@ -132,6 +132,21 @@ body {
   box-shadow: 0 12px 35px rgba(225, 48, 108, 0.35);
 }
 
+.btn-tutorial {
+  background: var(--ig-grad);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(225, 48, 108, 0.3);
+  font-weight: 600;
+}
+
+.btn-tutorial:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+  box-shadow: 0 8px 30px rgba(225, 48, 108, 0.5);
+  color: #fff;
+}
+
 .btn-secondary {
   background: rgba(255, 255, 255, 0.06);
   color: var(--text-main);

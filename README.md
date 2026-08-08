@@ -2,7 +2,15 @@
 
 > **100% Private, Client-Side Instagram Follower & Following Comparator and Safe Unfollow Tracker.**
 
-🌐 **Live Demo:** [https://unikefx.github.io/NoBack/](https://unikefx.github.io/NoBack/) | 🎥 **Export Guide Demo:** [How to Export Followers & Following List](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)
+[![Live Demo](https://img.shields.io/badge/%F0%9F%8C%90_Live_Demo-Open_App-6366f1?style=for-the-badge&logo=github)](https://unikefx.github.io/NoBack/)
+[![Interactive Export Guide](https://img.shields.io/badge/%F0%9F%8E%A5_Tutorial-How_to_Export_IG_Data-e1306c?style=for-the-badge&logo=instagram)](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)
+
+> [!TIP]
+> 🎬 **NEW: Step-by-Step Interactive Guide!**  
+> Don't know how to export your Instagram followers and following list?  
+> **[👉 Click here to watch the Interactive Export Tutorial (Supademo) 🚀](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)**
+
+---
 
 Easily compare your Instagram followers and following lists to find non-followers (who doesn't follow back), fans, and mutuals — all directly inside your browser without logging in or handing over your account credentials.
 
@@ -41,7 +49,9 @@ Easily compare your Instagram followers and following lists to find non-follower
 
 ## 📥 How to Get Your Instagram Data
 
-> 🎥 **Interactive Walkthrough:** View the [Step-by-Step Export Guide](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link) to see how to request and download your data.
+> [!IMPORTANT]
+> 📺 **Watch Interactive Demo:**  
+> **[Click here to open the step-by-step interactive guide on how to export your Instagram data 🚀](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)**
 
 1. Open Instagram on your phone or desktop and go to **Settings & Privacy** > **Accounts Center**.
 2. Navigate to **Your Information and Permissions** > **Download Your Information**.
