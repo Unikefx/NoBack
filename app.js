@@ -1,7 +1,23 @@
 /**
- * comARATOR - Instagram Follower & Following Comparator & Copy Utility
- * Client-side HTML / JSON / Text Parser and Line-by-Line Copy Box
+ * Safe Analytics Event Tracker
+ * Tracks traffic, page views, and feature usage events seamlessly.
+ * Compatible with Google Analytics 4 (gtag), GoatCounter, and Umami.
  */
+function trackEvent(name, params = {}) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params);
+    }
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+      window.goatcounter.count({ path: name, title: name, event: true });
+    }
+    if (window.umami && typeof window.umami.track === 'function') {
+      window.umami.track(name, params);
+    }
+  } catch (err) {
+    // Silent fail-safe
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
@@ -179,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       textarea.value = e.target.result;
       if (onDone) onDone();
       showToast(`Loaded file: ${file.name}`);
+      trackEvent('upload_file', { filename: file.name });
     };
     reader.readAsText(file);
   }
@@ -407,6 +424,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCopyBox();
     showToast(`Comparison complete! Found ${nonFollowers.length} non-followers.`);
+
+    // Track comparison event
+    trackEvent('compare_lists', {
+      followers_count: rawFollowers.length,
+      following_count: rawFollowing.length,
+      non_followers_count: nonFollowers.length
+    });
   }
 
   // Unfollow Tracker & Session LocalStorage Persistence Keys
@@ -633,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleUnfollowed(cleanH, true);
     showToast(`Opened @${cleanH} on Instagram & marked done`);
+    trackEvent('unfollow_tracker_open_next', { mode: isAuto ? 'auto' : 'manual' });
     return true;
   }
 
@@ -668,6 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     showToast('🚀 Auto Next started! Running continuously in loop until you click Stop.');
+    trackEvent('unfollow_tracker_auto_toggle', { status: 'started' });
 
     // Trigger FIRST profile opening synchronously inside this click gesture to ensure popup approval!
     const success = openNextProfile(true);
@@ -893,6 +919,7 @@ function copyAllLines() {
 
   copyToClipboard(formattedList);
   showToast(`Copied ${analysisState.currentDisplayList.length} handles line-by-line to clipboard!`);
+  trackEvent('copy_handles', { action: 'copy_all', count: analysisState.currentDisplayList.length });
 }
 
 // Download Output as TXT
@@ -917,6 +944,7 @@ function downloadAsTxt() {
   URL.revokeObjectURL(url);
 
   showToast(`Downloaded instagram_${analysisState.activeTab}_list.txt`);
+  trackEvent('copy_handles', { action: 'download_txt', count: analysisState.currentDisplayList.length });
 }
 
 // Utility Clipboard
@@ -966,6 +994,7 @@ function loadDemoData() {
   updateCounts();
   runComparison();
   showToast('Loaded demo Instagram HTML data!');
+  trackEvent('load_demo_data');
 }
 
 // Reset Application State
@@ -1010,6 +1039,7 @@ function openTutorialModal() {
   if (tutorialModal) {
     tutorialModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    trackEvent('open_export_tutorial');
   }
 }
 
