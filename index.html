@@ -21,9 +21,9 @@
       <p>Upload or paste your Instagram <code>followers.html</code> and <code>following.html</code> files to instantly find non-followers (the odd ones out) with line-by-line copy boxes.</p>
       
       <div class="header-actions">
-        <a href="https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link" target="_blank" rel="noopener noreferrer" class="btn btn-tutorial">
+        <button id="btnOpenTutorial" class="btn btn-tutorial">
           <i class="fa-solid fa-circle-play"></i> Watch How to Export Data (Interactive Guide)
-        </a>
+        </button>
         <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-insta">
           <i class="fa-brands fa-instagram"></i> @unik_efx
         </a>
@@ -45,9 +45,14 @@
           <span>Watch our interactive step-by-step guide showing how to request and download <code>followers.html</code> & <code>following.html</code>.</span>
         </div>
       </div>
-      <a href="https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link" target="_blank" rel="noopener noreferrer" class="btn-banner-link">
-        Launch Interactive Guide <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </a>
+      <div class="tutorial-banner-actions">
+        <button id="btnBannerOpenModal" class="btn-banner-link">
+          <i class="fa-solid fa-circle-play"></i> Watch Interactive Guide
+        </button>
+        <a href="https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link" target="_blank" rel="noopener noreferrer" class="btn-banner-link-ghost" title="Open Fullscreen in New Tab">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
     </div>
 
     <!-- Inputs Section -->
@@ -93,6 +98,59 @@
         <div class="card-footer">
           <span>Parsed handles:</span>
           <span class="count-badge" id="followingCount">0 accounts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Step-by-Step Data Export Guide & Live Supademo Player -->
+    <section class="tutorial-embed-section" id="tutorialEmbedSection">
+      <div class="section-title-bar">
+        <h2>
+          <i class="fa-solid fa-circle-play"></i> How to Export Followers & Following Data
+        </h2>
+        <div class="author-pill">
+          <span>Tutorial by</span>
+          <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i> @unik_efx
+          </a>
+        </div>
+      </div>
+      
+      <div class="tutorial-grid">
+        <div class="tutorial-steps-card">
+          <h3><i class="fa-solid fa-list-check"></i> Step-by-Step Instructions</h3>
+          <ol class="steps-list">
+            <li>Open Instagram and go to <strong>Settings & Privacy</strong> &gt; <strong>Accounts Center</strong>.</li>
+            <li>Select <strong>Your Information and Permissions</strong> &gt; <strong>Download Your Information</strong>.</li>
+            <li>Click <strong>Download or Transfer Information</strong> &gt; <strong>Some of your information</strong>.</li>
+            <li>Scroll down and check <strong>Followers and Following</strong>.</li>
+            <li>Select format <strong>HTML</strong> (or JSON) and request your file.</li>
+            <li>Extract the `.zip` file and find <code>followers.html</code> and <code>following.html</code>.</li>
+            <li>Drag & drop both files into the boxes above!</li>
+          </ol>
+          <div class="steps-action">
+            <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer" class="btn btn-insta-full">
+              <i class="fa-brands fa-instagram"></i> Follow @unik_efx on Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="tutorial-frame-card">
+          <div class="frame-header">
+            <span><i class="fa-solid fa-wand-magic-sparkles"></i> Interactive Live Demo</span>
+            <a href="https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link" target="_blank" rel="noopener noreferrer" class="external-link">
+              Fullscreen <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="iframe-container">
+            <iframe 
+              src="https://app.supademo.com/embed/cmsjyipof082eqm1xrhf3f34y?embed_v=2" 
+              loading="lazy" 
+              title="How to Export Instagram Follower and Following List" 
+              allow="fullscreen" 
+              allowfullscreen="true">
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -267,9 +325,46 @@
     </footer>
   </div>
 
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- Interactive Tutorial Modal -->
+  <div class="modal-overlay" id="tutorialModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-play"></i> Interactive Data Export Tutorial</h3>
+        <button class="modal-close" id="btnCloseTutorialModal" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Follow along with this step-by-step interactive demo created by <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer">@unik_efx</a>:</p>
+        <div class="modal-iframe-wrapper">
+          <iframe 
+            src="https://app.supademo.com/embed/cmsjyipof082eqm1xrhf3f34y?embed_v=2" 
+            loading="lazy" 
+            title="How to Export Instagram Follower and Following List" 
+            allow="fullscreen" 
+            allowfullscreen="true">
+          </iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-insta">
+          <i class="fa-brands fa-instagram"></i> Follow @unik_efx
+        </a>
+        <a href="https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen
+        </a>
+      </div>
+    </div>
+  </div>
 
-  <script src="app.js?v=6"></script>
+  <!-- Floating Quick Actions Pill -->
+  <div class="floating-social-pill">
+    <button id="btnFloatingTutorial" class="pill-btn tutorial-pill" title="Watch Export Tutorial">
+      <i class="fa-solid fa-circle-play"></i> Export Tutorial
+    </button>
+    <a href="https://www.instagram.com/unik_efx/" target="_blank" rel="noopener noreferrer" class="pill-btn insta-pill" title="Follow @unik_efx on Instagram">
+      <i class="fa-brands fa-instagram"></i> @unik_efx
+    </a>
+  </div>
+
+  <script src="app.js?v=7"></script>
 </body>
 </html>

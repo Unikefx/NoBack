@@ -999,6 +999,44 @@ function resetAll() {
   showToast('Cleared all inputs');
 }
 
+// Tutorial Modal Controls
+const tutorialModal = document.getElementById('tutorialModal');
+const btnOpenTutorial = document.getElementById('btnOpenTutorial');
+const btnBannerOpenModal = document.getElementById('btnBannerOpenModal');
+const btnFloatingTutorial = document.getElementById('btnFloatingTutorial');
+const btnCloseTutorialModal = document.getElementById('btnCloseTutorialModal');
+
+function openTutorialModal() {
+  if (tutorialModal) {
+    tutorialModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeTutorialModal() {
+  if (tutorialModal) {
+    tutorialModal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+if (btnOpenTutorial) btnOpenTutorial.addEventListener('click', openTutorialModal);
+if (btnBannerOpenModal) btnBannerOpenModal.addEventListener('click', openTutorialModal);
+if (btnFloatingTutorial) btnFloatingTutorial.addEventListener('click', openTutorialModal);
+if (btnCloseTutorialModal) btnCloseTutorialModal.addEventListener('click', closeTutorialModal);
+
+if (tutorialModal) {
+  tutorialModal.addEventListener('click', (e) => {
+    if (e.target === tutorialModal) closeTutorialModal();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && tutorialModal && tutorialModal.style.display === 'flex') {
+    closeTutorialModal();
+  }
+});
+
 // Restore previous session on page load if available
 restoreRawInputs();
 });
