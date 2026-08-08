@@ -4,6 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/%F0%9F%8C%90_Live_Demo-Open_App-6366f1?style=for-the-badge&logo=github)](https://unikefx.github.io/NoBack/)
 [![Interactive Export Guide](https://img.shields.io/badge/%F0%9F%8E%A5_Tutorial-How_to_Export_IG_Data-e1306c?style=for-the-badge&logo=instagram)](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)
+[![Instagram](https://img.shields.io/badge/Instagram-@unik__efx-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/unik_efx/)
 
 > [!TIP]
 > 🎬 **NEW: Step-by-Step Interactive Guide!**  
@@ -77,6 +78,15 @@ Unlike third-party mobile apps that require your Instagram username and password
 * **HTML5** & **Vanilla CSS3** (Custom Dark Theme UI)
 * **Modern JavaScript (ES6+)**
 * **FontAwesome 6** (Icons)
+
+---
+
+## 👤 Author & Support
+
+Created by **[@unik_efx](https://www.instagram.com/unik_efx/)**
+
+* 📸 **Instagram:** [https://www.instagram.com/unik_efx/](https://www.instagram.com/unik_efx/)
+* 🎥 **Interactive Data Export Tutorial:** [Watch Supademo Guide](https://app.supademo.com/demo/cmsjyipof082eqm1xrhf3f34y?utm_source=link)
 
 ---
 

@@ -992,3 +992,157 @@ textarea.input-editor:focus {
     width: 100%;
   }
 }
+
+/* Brand Insta Link & Button */
+.brand-insta-link {
+  color: #f472b6;
+  text-decoration: underline;
+  font-weight: 700;
+  margin-left: 3px;
+  transition: color 0.2s ease;
+}
+.brand-insta-link:hover {
+  color: #fff;
+}
+
+.btn-insta {
+  background: rgba(225, 48, 108, 0.15);
+  border: 1px solid rgba(225, 48, 108, 0.4);
+  color: #f472b6;
+  text-decoration: none;
+}
+.btn-insta:hover {
+  background: rgba(225, 48, 108, 0.3);
+  color: #fff;
+  border-color: rgba(225, 48, 108, 0.6);
+}
+
+/* Tutorial Banner Card */
+.tutorial-banner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(131, 58, 180, 0.2), rgba(253, 29, 29, 0.15), rgba(252, 176, 69, 0.15));
+  border: 1px solid rgba(225, 48, 108, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.6rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tutorial-banner-content .tutorial-icon {
+  font-size: 2.2rem;
+  background: var(--ig-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex-shrink: 0;
+}
+
+.tutorial-banner-content div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tutorial-banner-content strong {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.tutorial-banner-content span {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.btn-banner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ig-grad);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-banner-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(225, 48, 108, 0.5);
+  filter: brightness(1.1);
+  color: #fff;
+}
+
+/* App Footer */
+.app-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-insta-link {
+  color: #f472b6;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-insta-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-main);
+}
+
+.footer-dot {
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .tutorial-banner-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .tutorial-banner-content {
+    flex-direction: column;
+  }
+  .btn-banner-link {
+    justify-content: center;
+  }
+}
