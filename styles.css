@@ -48,6 +48,17 @@ body {
   background-attachment: fixed;
 }
 
+/* Global Link Resets & Aesthetics */
+a, a:visited {
+  color: #f472b6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
 .app-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -120,9 +131,9 @@ body {
   border: 1px solid transparent;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:visited {
   background: var(--ig-grad);
-  color: #fff;
+  color: #ffffff !important;
   box-shadow: var(--shadow-glow);
 }
 
@@ -130,11 +141,12 @@ body {
   transform: translateY(-2px);
   filter: brightness(1.1);
   box-shadow: 0 12px 35px rgba(225, 48, 108, 0.35);
+  color: #ffffff !important;
 }
 
-.btn-tutorial {
+.btn-tutorial, .btn-tutorial:visited {
   background: var(--ig-grad);
-  color: #fff;
+  color: #ffffff !important;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(225, 48, 108, 0.3);
   font-weight: 600;
@@ -144,12 +156,12 @@ body {
   transform: translateY(-2px);
   filter: brightness(1.15);
   box-shadow: 0 8px 30px rgba(225, 48, 108, 0.5);
-  color: #fff;
+  color: #ffffff !important;
 }
 
-.btn-secondary {
+.btn-secondary, .btn-secondary:visited {
   background: rgba(255, 255, 255, 0.06);
-  color: var(--text-main);
+  color: var(--text-main) !important;
   border-color: var(--border-color);
   backdrop-filter: blur(8px);
 }
@@ -158,15 +170,16 @@ body {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
+  color: #ffffff !important;
 }
 
-.btn-ghost {
+.btn-ghost, .btn-ghost:visited {
   background: transparent;
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
 }
 
 .btn-ghost:hover {
-  color: var(--text-main);
+  color: var(--text-main) !important;
   background: rgba(255, 255, 255, 0.05);
 }
 
@@ -994,26 +1007,26 @@ textarea.input-editor:focus {
 }
 
 /* Brand Insta Link & Button */
-.brand-insta-link {
-  color: #f472b6;
+.brand-insta-link, .brand-insta-link:visited {
+  color: #f472b6 !important;
   text-decoration: underline;
   font-weight: 700;
   margin-left: 3px;
   transition: color 0.2s ease;
 }
 .brand-insta-link:hover {
-  color: #fff;
+  color: #ffffff !important;
 }
 
-.btn-insta {
+.btn-insta, .btn-insta:visited {
   background: rgba(225, 48, 108, 0.15);
   border: 1px solid rgba(225, 48, 108, 0.4);
-  color: #f472b6;
+  color: #f472b6 !important;
   text-decoration: none;
 }
 .btn-insta:hover {
   background: rgba(225, 48, 108, 0.3);
-  color: #fff;
+  color: #ffffff !important;
   border-color: rgba(225, 48, 108, 0.6);
 }
 
@@ -1063,12 +1076,12 @@ textarea.input-editor:focus {
   color: var(--text-muted);
 }
 
-.btn-banner-link {
+.btn-banner-link, .btn-banner-link:visited {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: var(--ig-grad);
-  color: #fff;
+  color: #ffffff !important;
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -1077,13 +1090,15 @@ textarea.input-editor:focus {
   white-space: nowrap;
   box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
   transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-banner-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(225, 48, 108, 0.5);
   filter: brightness(1.1);
-  color: #fff;
+  color: #ffffff !important;
 }
 
 /* App Footer */
@@ -1100,15 +1115,15 @@ textarea.input-editor:focus {
   font-size: 0.9rem;
 }
 
-.footer-insta-link {
-  color: #f472b6;
+.footer-insta-link, .footer-insta-link:visited {
+  color: #f472b6 !important;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .footer-insta-link:hover {
-  color: #fff;
+  color: #ffffff !important;
   text-decoration: underline;
 }
 
@@ -1119,14 +1134,14 @@ textarea.input-editor:focus {
   font-size: 0.85rem;
 }
 
-.footer-links a {
-  color: var(--text-muted);
+.footer-links a, .footer-links a:visited {
+  color: var(--text-muted) !important;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-  color: var(--text-main);
+  color: var(--text-main) !important;
 }
 
 .footer-dot {
@@ -1154,20 +1169,20 @@ textarea.input-editor:focus {
   gap: 0.6rem;
 }
 
-.btn-banner-link-ghost {
+.btn-banner-link-ghost, .btn-banner-link-ghost:visited {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.65rem;
   border-radius: var(--radius-md);
-  color: var(--text-muted);
+  color: var(--text-muted) !important;
   border: 1px solid var(--border-color);
   background: rgba(255, 255, 255, 0.05);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 .btn-banner-link-ghost:hover {
-  color: #fff;
+  color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.1);
 }
@@ -1219,13 +1234,13 @@ textarea.input-editor:focus {
   border: 1px solid var(--border-color);
 }
 
-.author-pill a {
-  color: #f472b6;
+.author-pill a, .author-pill a:visited {
+  color: #f472b6 !important;
   font-weight: 700;
   text-decoration: none;
 }
 .author-pill a:hover {
-  color: #fff;
+  color: #ffffff !important;
 }
 
 .tutorial-grid {
@@ -1274,7 +1289,7 @@ textarea.input-editor:focus {
   border-top: 1px solid var(--border-color);
 }
 
-.btn-insta-full {
+.btn-insta-full, .btn-insta-full:visited {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1283,7 +1298,7 @@ textarea.input-editor:focus {
   padding: 0.7rem 1rem;
   background: linear-gradient(135deg, rgba(225, 48, 108, 0.2), rgba(131, 58, 180, 0.2));
   border: 1px solid rgba(225, 48, 108, 0.4);
-  color: #f472b6;
+  color: #f472b6 !important;
   font-weight: 700;
   border-radius: var(--radius-md);
   text-decoration: none;
@@ -1291,7 +1306,7 @@ textarea.input-editor:focus {
 }
 .btn-insta-full:hover {
   background: var(--ig-grad);
-  color: #fff;
+  color: #ffffff !important;
   border-color: transparent;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(225, 48, 108, 0.3);
@@ -1318,13 +1333,13 @@ textarea.input-editor:focus {
   color: var(--text-muted);
 }
 
-.frame-header .external-link {
-  color: #f472b6;
+.frame-header .external-link, .frame-header .external-link:visited {
+  color: #f472b6 !important;
   text-decoration: none;
   font-size: 0.8rem;
 }
 .frame-header .external-link:hover {
-  color: #fff;
+  color: #ffffff !important;
 }
 
 .iframe-container {
